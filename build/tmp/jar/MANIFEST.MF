@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: test
+Specification-Vendor: 
+Specification-Version: 1
+Implementation-Title: test
+Implementation-Version: 1.0-SNAPSHOT
+Implementation-Vendor: 
+Implementation-Timestamp: 2025-04-17T23:52:55-0400
+
