@@ -17,7 +17,7 @@
       "io.github.zalleous.modkotlin.client.ModkotlinClient"
     ],
     "main": [
-      "io.github.zalleous.modkotlin.Modkotlin"
+      { "adapter": "kotlin", "value": "io.github.zalleous.modkotlin.Modkotlin" }
     ]
   },
   "mixins": [

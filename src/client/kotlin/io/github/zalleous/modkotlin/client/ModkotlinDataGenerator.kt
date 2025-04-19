@@ -1,4 +1,4 @@
-package io.github.zalleous.modkotlin.datagen     // keep this in your *client* (or dedicated “datagen”) source‑set
+package io.github.zalleous.modkotlin.client     // keep this in your *client* (or dedicated “datagen”) source‑set
 
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
