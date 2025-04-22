@@ -6,23 +6,20 @@ import net.minecraft.block.AbstractBlock
 import net.minecraft.block.Block
 import net.minecraft.block.MapColor
 import net.minecraft.block.PillarBlock
+import net.minecraft.item.Item
 import net.minecraft.item.Item.Settings as ItemSettings
 import net.minecraft.item.ItemGroups
 import net.minecraft.registry.Registry
 import net.minecraft.sound.BlockSoundGroup
 
 object ModItems {
-    lateinit var customBlock: Block
+    lateinit var customItem: Item
 
-    fun customBlock() {
-        customBlock = RegistryHelper.registerBlock(
-            name = "newblock",
-            blockSettingsBuilder = {
-                mapColor(MapColor.BLACK)
-                    .strength(0.05f)
-            },
-            itemSettings = ItemSettings().maxCount(64),
-            creativeTabKey = ItemGroups.BUILDING_BLOCKS
+    fun customItem() {
+        customItem = RegistryHelper.registerItem(
+            "custom-item",
+            settingsBuilder = { maxCount(4) },
+            creativeTabKey = ItemGroups.COMBAT
         )
     }
 
@@ -30,6 +27,6 @@ object ModItems {
      * Call during initialization to register all blocks
      */
     fun register() {
-        customBlock()
+        customItem()
     }
 }
