@@ -15,14 +15,14 @@ object ModItems {
      */
     fun register() {
         exampleItem = RegistryHelper.registerItem(
-            "example_item",
-            ItemSettings().maxCount(64),
+            name = "example_item",
+            settingsBuilder = { maxCount(64) },
             creativeTabKey = ItemGroups.COMBAT
         )
 
         magicGem = RegistryHelper.registerItem(
-            "magic_gem",
-            ItemSettings().maxCount(16),
+            name = "magic_gem",
+            settingsBuilder = { maxCount(16) },
             creativeTabKey = ItemGroups.INGREDIENTS
         )
     }

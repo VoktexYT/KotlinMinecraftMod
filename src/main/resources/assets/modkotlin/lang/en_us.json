@@ -1,0 +1,6 @@
+{
+  "block.modkotlin.custom_stone": "Custom Stone",
+  "block.modkotlin.custom_ore":   "Custom Ore",
+  "item.modkotlin.example_item": "Example Item",
+  "item.modkotlin.magic_gem": "Magic Gem"
+}

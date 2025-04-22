@@ -1,10 +1,14 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.gradle.api.file.DuplicatesStrategy
+import org.gradle.jvm.tasks.Jar
+import org.gradle.api.tasks.Copy
 
 plugins {
     kotlin("jvm") version "2.1.20"
-    id("fabric-loom") version "1.10-SNAPSHOT"
+    id("fabric-loom") version "1.10.4"
     id("maven-publish")
+    kotlin("plugin.serialization") version "2.1.20"
 }
 
 version = project.property("mod_version") as String
@@ -34,6 +38,14 @@ loom {
     }
 }
 
+sourceSets {
+    named("client") {
+        // Ensure Gradle packs everything in src/client/resources
+        resources.srcDir("src/client/resources")
+    }
+}
+
+/*
 fabricApi {
     configureDataGeneration {
         client = true                // already present – compile with client classes
@@ -43,6 +55,7 @@ fabricApi {
         // addToResources = true     // (optional, default is true) copy generated data into main resources
     }
 }
+*/
 
 repositories {
     maven("https://maven.fabricmc.net/")
@@ -101,6 +114,17 @@ tasks.jar {
     from("LICENSE") {
         rename { "${it}_${project.base.archivesName}" }
     }
+}
+
+// Ignore duplicate resources coming from multiple source‑sets
+// ── Ignore duplicates for every resource‑copy task ─────────────
+tasks.withType<Copy>().configureEach {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+// ── Ignore duplicates for every jar/zip task (sourcesJar, remapJar…) ──
+tasks.withType<Jar>().configureEach {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 // configure the maven publication

@@ -25,17 +25,31 @@ object RegistryHelper {
      */
     fun registerItem(
         name: String,
-        settings: ItemSettings = ItemSettings(),
+        settingsBuilder: ItemSettings.() -> ItemSettings = { this },
         creativeTabKey: RegistryKey<ItemGroup>? = null
     ): Item {
-        // use Items.register to set registry key internally
-        val item = Items.register(name, settings)
+        // 1. Build the Identifier and RegistryKey for your item
+        val id = Identifier.of(MOD_ID, name)
+        val key = RegistryKey.of(RegistryKeys.ITEM, id)
+
+        // 2. Apply registryKey to settings *before* creating the Item
+        val settings = ItemSettings()
+            .registryKey(key)
+            .settingsBuilder()
+
+        // 3. Construct your Item and register it
+        val item = Item(settings)
+        Registry.register(Registries.ITEM, id, item)
+
+        // 4. Optionally add to a creative tab
         creativeTabKey?.let { tabKey ->
             ItemGroupEvents.modifyEntriesEvent(tabKey)
                 .register { entries -> entries.add(item) }
         }
+
         return item
     }
+
 
     /**
      * Registers a Block and its BlockItem with the given name,

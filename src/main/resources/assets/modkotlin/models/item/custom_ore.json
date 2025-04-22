@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "modkotlin:block/test_block"
+    "all": "modkotlin:block/custom_ore"
   }
 }
