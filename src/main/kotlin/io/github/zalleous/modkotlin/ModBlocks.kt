@@ -44,7 +44,7 @@ object ModBlocks {
 
     fun customBlock() {
         customBlock = RegistryHelper.registerBlock(
-            name = "customblock",
+            name = "newblock",
             blockSettingsBuilder = {
                 mapColor(MapColor.BLACK)
                     .strength(0.05f)
