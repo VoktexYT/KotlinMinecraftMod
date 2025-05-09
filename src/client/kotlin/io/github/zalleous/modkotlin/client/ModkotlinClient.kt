@@ -34,7 +34,7 @@ class ModkotlinClient : ClientModInitializer {
 
 
     override fun onInitializeClient() {
-        leftClickEvent { player -> sendMessageTo(player, "LEFT") }
-        rightClickEvent { player -> sendMessageTo(player, "RIGHT") }
+//        leftClickEvent { player -> sendMessageTo(player, "LEFT") }
+//        rightClickEvent { player -> sendMessageTo(player, "RIGHT") }
     }
 }
