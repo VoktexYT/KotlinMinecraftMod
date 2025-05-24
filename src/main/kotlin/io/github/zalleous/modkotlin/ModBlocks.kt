@@ -31,35 +31,10 @@ object ModItems {
     lateinit var hammerItem: Item
 
     fun customItem() {
-        val id = Identifier.of("modkotlin", "custom-item")
-
-        val hammerSettings = ItemSettings()
-            .maxDamage(250)
-            .maxCount(1)
-            .registryKey(id as RegistryKey<Item?>?) // ✅ Fix: set the registry key
-
-        hammerItem = Registry.register(
-            Registries.ITEM,
-            id,
-            object : Item(hammerSettings) {
-                override fun postMine(
-                    stack: ItemStack,
-                    world: World,
-                    state: BlockState,
-                    pos: BlockPos,
-                    miner: LivingEntity
-                ) {
-                    stack.damage(1, miner, null)
-                }
-
-                override fun postHit(
-                    stack: ItemStack,
-                    target: LivingEntity,
-                    attacker: LivingEntity
-                ) {
-                    stack.damage(1, attacker, null)
-                }
-            }
+        hammerItem = RegistryHelper.registerItem(
+            "custom-item",
+            settingsBuilder = { maxCount(4) },
+            creativeTabKey = ItemGroups.COMBAT
         )
     }
 
